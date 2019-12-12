@@ -1,0 +1,92 @@
+disabled_rules:
+  trailing_newline
+  trailing_whitespace
+  
+line_length: 180
+
+custom_rules:
+  image_name_initialization: # Disable UIImage init from name
+    included: ".*.swift"
+    name: "Image initialization"
+    regex: 'UIImage\(named:[^)]+\)'
+    message: "Use R.image.name() or typealiaas of this instead"
+    severity: error
+    
+  open_iboutlets:
+    included: ".*.swift"
+    name: "IBOutlet opening"
+    regex: '@IBOutlet ?(weak){0,1} var'
+    message: "IBOutlet should be private"
+    severity: error
+
+  open_ibaction:
+    included: ".*.swift"
+    name: "IBAction opening"
+    regex: '@IBAction func'
+    message: "IBAction should be private"
+    severity: error
+        
+  mark_newlines:
+    included: ".*.swift"
+    name: "MARK newlines surrounding"
+    regex: '(([}{)\w \t]+\n{1}[ \t]*)(\/\/ MARK: - [\w ]*))|((\/\/ MARK: - [\w ]*)(\n{1}[ \t]*\w+))'
+    message: "Every MARK should be surrounded with 1 newline before and 1 after it"
+    severity: warning
+    
+  unnecessary_type:
+    name: "Unnecessary Type"
+    regex: '(?sm)[ \ta-zA-Z0-9]?(?:let|var){1} [ \ta-zA-Z0-9]+?:[ \t]+?([a-zA-Z0-9]+?)[\t ]+?=[\t ]?\1'
+    message: "Type Definition Not Needed"
+    severity: warning
+    
+  comments_space:
+    name: "Space After Comment"
+    regex: '(^ *//\w+)'
+    message: "There should be a space after //"
+    severity: warning
+  
+  empty_closure_params:
+    included: ".*.swift"
+    name: "Empty closure params"
+    regex: '\{ (\(\) -> Void in)$'
+    message: "`() -> Void in` should be avoided"
+    severity: warning
+  
+  unnecessary_type:
+    name: "Unnecessary Type"
+    regex: '[ a-zA-Z0-9]*(?:let|var) [ a-zA-Z0-9]*: ([a-zA-Z0-9]*)[ ]*= \1\('
+    message: "Type Definition Not Needed"
+    severity: error
+    
+  comments_capitalized_ignore_possible_code:
+    name: "Capitalize First Word In Comment"
+    regex: '(\w??// +(?!swiftlint)[a-z]+)'
+    message: "The first word of a comment should be capitalized"
+    severity: error
+  
+  final_class:
+    included: ".*.swift"
+    name: "Final class requrement"
+    regex: '^class'
+    message: "All classes must be final or nonfinal"
+    saverity: error
+    
+  numbers_smell:
+    regex: '(return |case |\w\(|: |\?\? |\, |== |<=? |>=? |\+= |\-= |\/= |\*= |%= |\w\.\w+ = )\(*\d{2,}'
+    message: "Numbers smell; define a constant instead."
+  
+  print_using:
+    regex: 'print'
+    message: "Print decrease performance of the app"
+    
+  class_protocol:
+    regex: ': class'
+    message: "Use Anyobject instead"
+    
+  foundation_using:
+    regex: 'import Foundation'
+    message: "Do you really need for Foundation ???"
+
+  required_init:
+    regex: 'required init\?\(coder: NSCoder\)'
+    message: "Use NL class instead"
