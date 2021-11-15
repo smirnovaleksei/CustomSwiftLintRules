@@ -69,7 +69,7 @@ custom_rules:
     name: "Final class requrement"
     regex: '^class'
     message: "All classes must be final or nonfinal"
-    saverity: error
+    severity: error
     
   numbers_smell:
     regex: '(return |case |\w\(|: |\?\? |\, |== |<=? |>=? |\+= |\-= |\/= |\*= |%= |\w\.\w+ = )\(*\d{2,}'
